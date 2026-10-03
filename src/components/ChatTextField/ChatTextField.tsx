@@ -20,14 +20,12 @@ export const ChatTextField = ({ onSend }: ChatTextFieldProps) => {
 			return;
 		}
 
-		textarea.style.height = 'auto';
+		textarea.style.height = `${LINE_HEIGHT}px`;
 
 		const maxHeight = LINE_HEIGHT * MAX_LINES;
-
 		const newHeight = Math.min(textarea.scrollHeight, maxHeight);
 
 		textarea.style.height = `${newHeight}px`;
-
 		textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
 	};
 

@@ -12,7 +12,7 @@
 
 .messagesArea {
 	flex: 1;
-
+	display: flex;
 	min-height: 0;
 
 	overflow-y: auto;
@@ -34,4 +34,18 @@
 	justify-content: flex-end;
 
 	gap: 10px;
+}
+
+.noMessages {
+	border-radius: 16px;
+	color: #f1f1f1;
+	background: #292b30;
+	font-size: 18px;
+	line-height: 1.4;
+	padding: 8px 10px;
+	width: fit-content;
+	margin: 0 auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	cursor: default;
 }

@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GreenApiClient } from '../../services/GreenApiClient';
 import { routeTarget } from '../../router/routes';
+
+import styles from './PhoneCheckPage.module.css';
 import { useAppConfig } from '../../context/useAppConfig';
 
 export const PhoneCheckPage = () => {
@@ -67,33 +69,41 @@ export const PhoneCheckPage = () => {
 	};
 
 	return (
-		<main>
-			<section>
-				<div>
-					<span>Вы вошли в аккаунт</span>
+		<main className={styles.page}>
+			<section className={styles.card}>
+				<div className={styles.accountInfo}>
+					<span className={styles.accountStatus}>Вы вошли в аккаунт</span>
 
-					<button type="button" onClick={handleLogout}>
+					<button type="button" className={styles.logoutButton} onClick={handleLogout}>
 						Выйти
 					</button>
 				</div>
 
-				<div>
-					<h1>Проверка номера</h1>
+				<div className={styles.form}>
+					<h1 className={styles.title}>Проверка номера</h1>
 
-					<p>Введите номер телефона, чтобы проверить наличие аккаунта в MAX</p>
+					<p className={styles.subtitle}>
+						Введите номер телефона, чтобы проверить наличие аккаунта в MAX
+					</p>
 
 					<input
 						type="tel"
 						value={phoneNumber}
 						onChange={(event) => setPhoneNumber(event.target.value)}
 						placeholder="+7 999 123-45-67"
+						className={styles.input}
 					/>
 
-					<button type="button" onClick={handleCheck} disabled={isChecking || !phoneNumber.trim()}>
-						{isChecking ? 'Проверка...' : 'Проверить'}
+					<button
+						type="button"
+						className={styles.checkButton}
+						onClick={handleCheck}
+						disabled={isChecking || !phoneNumber.trim()}
+					>
+						{isChecking ? 'Проверка...' : 'Проверить и начать'}
 					</button>
 
-					{errorMessage && <p>{errorMessage}</p>}
+					{errorMessage && <p className={styles.error}>{errorMessage}</p>}
 				</div>
 			</section>
 		</main>

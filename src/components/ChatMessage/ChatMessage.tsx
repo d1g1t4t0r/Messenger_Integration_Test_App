@@ -5,10 +5,19 @@ interface ChatMessageProps {
 	message: ChatMessageData;
 }
 
-export const ChatMessage = ({ message }: ChatMessageProps) => {
-	const messageClassName = message.isIncoming
-		? `${styles.message} ${styles.incoming}`
-		: `${styles.message} ${styles.outgoing}`;
+const formatMessageTime = (timestamp: number) => {
+	return new Intl.DateTimeFormat('ru-RU', {
+		hour: '2-digit',
+		minute: '2-digit',
+	}).format(new Date(timestamp));
+};
 
-	return <div className={messageClassName}>{message.messageText}</div>;
+export const ChatMessage = ({ message }: ChatMessageProps) => {
+	return (
+		<div className={`${styles.message} ${message.isIncoming ? styles.incoming : styles.outgoing}`}>
+			<div className={styles.messageText}>{message.messageText}</div>
+
+			<div className={styles.timestamp}>{formatMessageTime(message.timestamp)}</div>
+		</div>
+	);
 };

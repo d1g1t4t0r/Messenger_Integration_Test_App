@@ -10,7 +10,7 @@ import { useAppConfig } from '../../context/useAppConfig';
 
 export const ChatPage = () => {
 	const navigate = useNavigate();
-	const { config, selectedContact } = useAppConfig();
+	const { config, selectedContact, clearSelectedContact } = useAppConfig();
 
 	const api = useMemo(() => new GreenApiClient(config!), [config]);
 	const [messages, setMessages] = useState<ChatMessageData[]>([]);
@@ -29,7 +29,7 @@ export const ChatPage = () => {
 				id: response.idMessage,
 				isIncoming: false,
 				messageText: trimmedMessage,
-				timestamp: 0,
+				timestamp: Date.now(),
 				chatId: selectedContact?.chatId ?? '',
 			};
 
@@ -40,12 +40,16 @@ export const ChatPage = () => {
 	};
 
 	const handleBack = () => {
+		clearSelectedContact();
 		navigate('/main');
 	};
 
 	// Связанное с получением
 
 	useEffect(() => {
+		if (!selectedContact?.chatId) {
+			navigate('/main');
+		}
 		let isRunning = true;
 
 		const receiveMessages = async () => {
@@ -64,14 +68,12 @@ export const ChatPage = () => {
 
 					const { body, receiptId } = notification;
 
-					// На случай сообщений с вложениями выкинем ошибку
+					// На случай уведомлений, не являющихся входящими сообщениями, просто удаляем их
 					if (
 						body.typeWebhook !== 'incomingMessageReceived' ||
 						body.messageData.typeMessage !== 'textMessage' ||
 						!body.messageData.textMessageData
 					) {
-						console.error('Уведомление пока не поддерживается:', body);
-
 						await api.deleteNotification(receiptId);
 
 						continue;
@@ -112,18 +114,22 @@ export const ChatPage = () => {
 		return () => {
 			isRunning = false;
 		};
-	}, [api, selectedContact]);
+	}, [api, navigate, selectedContact]);
 
 	return (
 		<div className={styles.chatPage}>
 			<ChatHeader phoneNumber={selectedContact?.name ?? 'Пользователь'} onBack={handleBack} />
 
 			<main className={styles.messagesArea}>
-				<div className={styles.messagesList}>
-					{messages.map((message) => (
-						<ChatMessage key={message.id} message={message} />
-					))}
-				</div>
+				{messages.length === 0 ? (
+					<div className={styles.noMessages}>Напишите сообщение!</div>
+				) : (
+					<div className={styles.messagesList}>
+						{messages.map((message) => (
+							<ChatMessage key={message.id} message={message} />
+						))}
+					</div>
+				)}
 			</main>
 
 			<ChatTextField onSend={handleSendMessage} />
