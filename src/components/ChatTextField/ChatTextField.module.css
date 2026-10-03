@@ -1,0 +1,113 @@
+.wrapper {
+	flex: 0 0 auto;
+
+	width: 100%;
+
+	padding: 12px 20px 20px;
+
+	background: #111315;
+}
+
+.inputContainer {
+	position: relative;
+
+	width: 100%;
+	max-width: 900px;
+
+	min-height: 48px;
+
+	margin: 0 auto;
+
+	display: flex;
+	align-items: flex-end;
+
+	padding: 11px 52px 11px 16px;
+
+	border-radius: 14px;
+
+	background: #202226;
+}
+
+.textarea {
+	width: 100%;
+	max-height: 220px;
+	min-height: 22px;
+
+	padding: 0;
+
+	resize: none;
+
+	border: none;
+	outline: none;
+
+	background: transparent;
+	color: #ffffff;
+
+	font-family: inherit;
+	font-size: 16px;
+	line-height: 22px;
+
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+.textarea::placeholder {
+	color: #85878c;
+	opacity: 1;
+}
+
+.textarea::-webkit-scrollbar {
+	width: 6px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+	background: #555860;
+	border-radius: 4px;
+}
+
+.sendButton {
+	position: absolute;
+
+	right: 8px;
+	bottom: 8px;
+
+	width: 34px;
+	height: 34px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0;
+
+	border: none;
+	border-radius: 50%;
+
+	background: #5b8def;
+	color: #ffffff;
+
+	cursor: pointer;
+}
+
+.sendButton:hover {
+	background: #6d9bf2;
+}
+
+.sendButton:active {
+	transform: scale(0.95);
+}
+
+.sendIcon {
+	width: 20px;
+	height: 20px;
+}
+
+@media (max-width: 600px) {
+	.wrapper {
+		padding: 8px 10px 12px;
+	}
+
+	.inputContainer {
+		min-height: 46px;
+	}
+}

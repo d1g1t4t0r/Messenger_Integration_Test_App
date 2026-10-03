@@ -1,0 +1,37 @@
+.chatPage {
+	width: 100%;
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+
+	overflow: hidden;
+
+	background: #111315;
+}
+
+.messagesArea {
+	flex: 1;
+
+	min-height: 0;
+
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	padding: 24px 20px;
+}
+
+.messagesList {
+	width: 100%;
+	max-width: 1200px;
+
+	min-height: 100%;
+
+	margin: 0 auto;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+
+	gap: 10px;
+}

@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+coverage
+.next
+.vite
+.cache
+
+*.min.js
+*.map
+
+package-lock.json
