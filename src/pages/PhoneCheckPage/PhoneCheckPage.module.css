@@ -1,19 +1,22 @@
 .page {
-	width: 100%;
 	min-height: 100vh;
+	box-sizing: border-box;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
 	padding: 24px;
-	background: #111315;
+
+	background: var(--color-background);
 }
 
 .card {
 	width: 100%;
 	max-width: 480px;
 	padding: 36px;
-	background: #17181c;
-	border: 1px solid #292b30;
+	background: var(--color-background-card);
+	border: 1px solid var(--color-border-card);
 	border-radius: 16px;
 }
 
@@ -23,12 +26,12 @@
 	justify-content: space-between;
 	gap: 16px;
 	padding-bottom: 20px;
-	margin-bottom: 32px;
-	border-bottom: 1px solid #292b30;
+	margin-bottom: 36px;
+	border-bottom: 1px solid var(--color-border-card);
 }
 
 .accountStatus {
-	color: #85878c;
+	color: var(--color-text-secondary);
 	font-size: 14px;
 	line-height: 1.4;
 }
@@ -37,7 +40,7 @@
 	padding: 0;
 	border: none;
 	background: transparent;
-	color: #85878c;
+	color: var(--color-text-secondary);
 	font-family: inherit;
 	font-size: 14px;
 	cursor: pointer;
@@ -45,7 +48,7 @@
 }
 
 .logoutButton:hover {
-	color: #f1f1f1;
+	color: var(--color-text-primary);
 }
 
 .form {
@@ -55,7 +58,7 @@
 
 .title {
 	margin: 0;
-	color: #f1f1f1;
+	color: var(--color-text-primary);
 	font-size: 28px;
 	font-weight: 500;
 	line-height: 1.2;
@@ -64,7 +67,7 @@
 
 .subtitle {
 	margin: 10px 0 28px;
-	color: #85878c;
+	color: var(--color-text-secondary);
 	font-size: 15px;
 	line-height: 1.4;
 	text-align: center;
@@ -74,11 +77,11 @@
 	width: 100%;
 	height: 48px;
 	padding: 0 14px;
-	border: 1px solid #35383e;
+	border: 1px solid var(--color-border-input);
 	border-radius: 10px;
 	outline: none;
-	background: #202226;
-	color: #ffffff;
+	background: var(--color-input-background);
+	color: var(--color-text-primary);
 	font-family: inherit;
 	font-size: 16px;
 	transition:
@@ -88,12 +91,11 @@
 }
 
 .input::placeholder {
-	color: #666970;
+	color: var(--color-text-secondary);
 }
 
 .input:focus {
-	border-color: #5b8def;
-	background: #23252a;
+	border-color: var(--color-border-input-hover);
 }
 
 .checkButton {
@@ -102,8 +104,8 @@
 	margin-top: 16px;
 	border: none;
 	border-radius: 10px;
-	background: #5b8def;
-	color: #ffffff;
+	background: var(--color-button);
+	color: var(--color-text-primary);
 	font-family: inherit;
 	font-size: 16px;
 	font-weight: 500;
@@ -114,7 +116,7 @@
 }
 
 .checkButton:hover:not(:disabled) {
-	background: #6d9bf2;
+	background: var(--color-button-hover);
 }
 
 .checkButton:active:not(:disabled) {
@@ -128,7 +130,7 @@
 
 .error {
 	margin: 16px 0 0;
-	color: #d6d7da;
+	color: var(--color-text-primary);
 	font-size: 14px;
 	line-height: 1.5;
 	text-align: center;

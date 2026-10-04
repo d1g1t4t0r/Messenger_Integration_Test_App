@@ -6,4 +6,5 @@ export interface AppConfig {
 export interface SelectedContact {
 	chatId: string;
 	name: string;
+	phoneNumber: number;
 }

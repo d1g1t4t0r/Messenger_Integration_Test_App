@@ -42,7 +42,7 @@ export const PhoneCheckPage = () => {
 			const checkResult = await api.checkAccount(Number(normalizedPhone));
 
 			if (!checkResult.exist) {
-				setErrorMessage('привязанный к данному номеру аккаунт в мессенджере MAX отсутствует');
+				setErrorMessage('Привязанный к данному номеру аккаунт в мессенджере MAX отсутствует');
 
 				return;
 			}
@@ -52,13 +52,16 @@ export const PhoneCheckPage = () => {
 			setSelectedContact({
 				chatId: checkResult.chatId,
 				name: contactInfo.name,
+				phoneNumber: contactInfo.phoneNumber,
 			});
 
 			navigate(routeTarget.chat);
 		} catch (error) {
 			console.error('Не удалось проверить номер:', error);
 
-			setErrorMessage('Не удалось проверить номер. Попробуйте еще раз.');
+			setErrorMessage(
+				'Не удалось проверить номер. Проверьте корректность введенных данных и попробуйте еще раз.',
+			);
 		} finally {
 			setIsChecking(false);
 		}
@@ -83,7 +86,7 @@ export const PhoneCheckPage = () => {
 					<h1 className={styles.title}>Проверка номера</h1>
 
 					<p className={styles.subtitle}>
-						Введите номер телефона, чтобы проверить наличие аккаунта в MAX
+						Введите номер телефона, чтобы проверить наличие аккаунта в MAX и начать чат
 					</p>
 
 					<input

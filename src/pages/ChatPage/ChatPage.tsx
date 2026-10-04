@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ChatHeader } from '../../components/ChatHeader/ChatHeader';
 import { ChatMessage } from '../../components/ChatMessage/ChatMessage';
 import { ChatTextField } from '../../components/ChatTextField/ChatTextField';
@@ -14,6 +14,9 @@ export const ChatPage = () => {
 
 	const api = useMemo(() => new GreenApiClient(config!), [config]);
 	const [messages, setMessages] = useState<ChatMessageData[]>([]);
+
+	// Для автоскролла вниз
+	const messagesAreaRef = useRef<HTMLElement | null>(null);
 
 	const handleSendMessage = async (messageText: string) => {
 		const trimmedMessage = messageText.trim();
@@ -90,7 +93,7 @@ export const ChatPage = () => {
 
 					const newMessage: ChatMessageData = {
 						id: body.idMessage,
-						timestamp: body.timestamp,
+						timestamp: body.timestamp * 1000,
 						chatId: incomingChatId,
 						isIncoming: true,
 						messageText: body.messageData.textMessageData.textMessage,
@@ -116,11 +119,30 @@ export const ChatPage = () => {
 		};
 	}, [api, navigate, selectedContact]);
 
+	// Автоскролл вниз
+
+	useEffect(() => {
+		const messagesArea = messagesAreaRef.current;
+
+		if (!messagesArea) {
+			return;
+		}
+
+		messagesArea.scrollTo({
+			top: messagesArea.scrollHeight,
+			behavior: 'smooth',
+		});
+	}, [messages]);
+
 	return (
 		<div className={styles.chatPage}>
-			<ChatHeader phoneNumber={selectedContact?.name ?? 'Пользователь'} onBack={handleBack} />
+			<ChatHeader
+				contactName={selectedContact?.name ?? 'Пользователь'}
+				phoneNumber={selectedContact?.phoneNumber ?? 0}
+				onBack={handleBack}
+			/>
 
-			<main className={styles.messagesArea}>
+			<main ref={messagesAreaRef} className={styles.messagesArea}>
 				{messages.length === 0 ? (
 					<div className={styles.noMessages}>Напишите сообщение!</div>
 				) : (

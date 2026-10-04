@@ -53,6 +53,11 @@ export interface CheckAccountResponse {
 
 export interface GetContactInfoResponse {
 	name: string;
+	phoneNumber: number;
+}
+
+export interface GetStateInstanceResponse {
+	stateInstance: string;
 }
 
 export class GreenApiClient {
@@ -66,6 +71,24 @@ export class GreenApiClient {
 
 	private getUrl(method: string, additional?: string) {
 		return `${config.apiUrl}/waInstance${this.idInstance}/${method}/${this.apiTokenInstance}${additional ?? ''}`;
+	}
+
+	// Метод для проверки первичного ввода параметров инстанса: если корректно, то идем дальше
+	static async getStateInstance(
+		idInstance: string,
+		apiTokenInstance: string,
+	): Promise<GetStateInstanceResponse> {
+		const url = `${config.apiUrl}/waInstance${idInstance}/getStateInstance/${apiTokenInstance}`;
+
+		const response = await fetch(url, {
+			method: 'GET',
+		});
+
+		if (!response.ok) {
+			throw new Error(`Ошибка проверки инстанса: ${response.status} ${response.statusText}`);
+		}
+
+		return response.json() as Promise<GetStateInstanceResponse>;
 	}
 
 	async checkAccount(phoneNumber: number): Promise<CheckAccountResponse> {

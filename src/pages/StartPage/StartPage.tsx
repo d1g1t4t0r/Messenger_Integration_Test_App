@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { routeTarget } from '../../router/routes';
 import { useAppConfig } from '../../context/useAppConfig';
+import { GreenApiClient } from '../../services/GreenApiClient';
 
 export const StartPage = () => {
 	const navigate = useNavigate();
@@ -11,18 +12,49 @@ export const StartPage = () => {
 	const [idInstance, setIdInstance] = useState('');
 	const [apiTokenInstance, setApiTokenInstance] = useState('');
 
-	const handleStart = () => {
-		if (!idInstance || !apiTokenInstance) {
+	const [isChecking, setIsChecking] = useState(false);
+	const [error, setError] = useState('');
+
+	const isFormValid = idInstance.trim() !== '' && apiTokenInstance.trim() !== '';
+
+	const handleStart = async () => {
+		if (!isFormValid || isChecking) {
 			return;
 		}
+		setIsChecking(true);
+		setError('');
 
-		setConfig({
-			idInstance,
-			apiTokenInstance,
-		});
+		try {
+			await GreenApiClient.getStateInstance(idInstance.trim(), apiTokenInstance.trim());
 
-		navigate(routeTarget.chat);
+			setConfig({
+				idInstance: idInstance.trim(),
+				apiTokenInstance: apiTokenInstance.trim(),
+			});
+
+			navigate(routeTarget.chat);
+		} catch (error) {
+			console.error('Ошибка проверки инстанса:', error);
+
+			setError(
+				'Инстанс некорректен или произошла ошибка. Проверьте введенные данные и повторите попытку',
+			);
+		} finally {
+			setIsChecking(false);
+		}
 	};
+	// const handleStart = () => {
+	// 	if (!idInstance || !apiTokenInstance) {
+	// 		return;
+	// 	}
+
+	// 	setConfig({
+	// 		idInstance,
+	// 		apiTokenInstance,
+	// 	});
+
+	// 	navigate(routeTarget.chat);
+	// };
 
 	return (
 		<main className={styles.page}>
@@ -54,9 +86,14 @@ export const StartPage = () => {
 						/>
 					</label>
 				</div>
-
-				<button type="button" className={styles.startButton} onClick={handleStart}>
-					Начать
+				{error && <p className={styles.error}>{error}</p>}
+				<button
+					type="button"
+					className={styles.startButton}
+					onClick={handleStart}
+					disabled={!isFormValid || isChecking}
+				>
+					{isChecking ? 'Проверка...' : 'Начать'}
 				</button>
 			</section>
 		</main>

@@ -2,7 +2,7 @@
 	max-width: 60%;
 	padding: 8px 10px;
 	border-radius: 16px;
-	color: #f1f1f1;
+	color: var(--color-text-primary);
 	font-size: 15px;
 	line-height: 1.4;
 	overflow-wrap: anywhere;
@@ -10,14 +10,16 @@
 
 .incoming {
 	align-self: flex-start;
-	background: #3a3d43;
-	border-bottom-left-radius: 4px;
+	background: var(--color-message-incoming);
 }
 
 .outgoing {
 	align-self: flex-end;
-	background: #5b8def;
-	border-bottom-right-radius: 4px;
+	background: linear-gradient(
+		90deg,
+		var(--color-message-gradient1) 0%,
+		var(--color-message-gradient2) 100%
+	);
 }
 
 .messageText {
@@ -29,7 +31,7 @@
 .timestamp {
 	width: 100%;
 	margin-top: 4px;
-	color: rgba(255, 255, 255, 0.55);
+	color: var(--color-text-secondary);
 	font-size: 11px;
 	line-height: 1;
 	text-align: right;

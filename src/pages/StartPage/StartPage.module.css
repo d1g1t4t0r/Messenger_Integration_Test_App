@@ -1,5 +1,6 @@
 .page {
 	min-height: 100vh;
+	box-sizing: border-box;
 
 	display: flex;
 	align-items: center;
@@ -7,7 +8,7 @@
 
 	padding: 24px;
 
-	background: #111315;
+	background: var(--color-background);
 }
 
 .card {
@@ -16,16 +17,16 @@
 
 	padding: 36px;
 
-	background: #17181c;
+	background: var(--color-background-card);
 
-	border: 1px solid #292b30;
+	border: 1px solid var(--color-border-card);
 	border-radius: 16px;
 }
 
 .title {
 	margin: 0;
 
-	color: #f1f1f1;
+	color: var(--color-text-primary);
 
 	font-size: 28px;
 	font-weight: 500;
@@ -37,7 +38,7 @@
 .subtitle {
 	margin: 10px 0 32px;
 
-	color: #85878c;
+	color: var(--color-text-secondary);
 
 	font-size: 15px;
 	line-height: 1.4;
@@ -60,7 +61,7 @@
 }
 
 .field span {
-	color: #c8c9cc;
+	color: var(--color-text-primary);
 
 	font-size: 14px;
 }
@@ -70,13 +71,13 @@
 
 	padding: 0 14px;
 
-	border: 1px solid #35383e;
+	border: 1px solid var(--color-border-input);
 	border-radius: 10px;
 
 	outline: none;
 
-	background: #202226;
-	color: #ffffff;
+	background: var(--color-input-background);
+	color: var(--color-text-primary);
 
 	font-family: inherit;
 	font-size: 16px;
@@ -87,12 +88,12 @@
 }
 
 .field input::placeholder {
-	color: #666970;
+	color: var(--color-text-secondary);
 }
 
 .field input:focus {
-	border-color: #5b8def;
-	background: #23252a;
+	border-color: var(--color-border-input-hover);
+	background: var(--color-input-background);
 }
 
 .startButton {
@@ -104,8 +105,8 @@
 	border: none;
 	border-radius: 10px;
 
-	background: #5b8def;
-	color: #ffffff;
+	background: var(--color-button);
+	color: var(--color-text-primary);
 
 	font-family: inherit;
 	font-size: 16px;
@@ -119,7 +120,7 @@
 }
 
 .startButton:hover {
-	background: #6d9bf2;
+	background: var(--color-button-hover);
 }
 
 .startButton:active {
@@ -138,4 +139,9 @@
 	.title {
 		font-size: 24px;
 	}
+}
+
+.error {
+	margin-top: 28px;
+	color: var(--color-text-primary);
 }

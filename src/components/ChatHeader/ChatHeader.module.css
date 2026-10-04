@@ -8,9 +8,9 @@
 
 	padding: 0 20px;
 
-	background: #17181c;
+	background: var(--color-background-card);
 
-	border-bottom: 1px solid #292b30;
+	border-bottom: 1px solid var(--color-border-card);
 }
 
 .backButton {
@@ -28,13 +28,13 @@
 	border-radius: 50%;
 
 	background: transparent;
-	color: #f1f1f1;
+	color: var(--color-text-primary);
 
 	cursor: pointer;
 }
 
 .backButton:hover {
-	background: #292b30;
+	background: var(--color-border-card);
 }
 
 .backIcon {
@@ -42,9 +42,23 @@
 	height: 26px;
 }
 
-.phoneNumber {
-	color: #f1f1f1;
+.contactBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	text-align: left;
+}
+
+.contactName {
+	color: var(--color-text-primary);
 
 	font-size: 18px;
+	line-height: 1;
+}
+
+.phoneNumber {
+	color: var(--color-text-secondary);
+
+	font-size: 12px;
 	line-height: 1;
 }
