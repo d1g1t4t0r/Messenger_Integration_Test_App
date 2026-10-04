@@ -83,7 +83,7 @@ export const PhoneCheckPage = () => {
 				</div>
 
 				<div className={styles.form}>
-					<h1 className={styles.title}>Проверка номера</h1>
+					<h1 className={styles.title}>Начать чат</h1>
 
 					<p className={styles.subtitle}>
 						Введите номер телефона, чтобы проверить наличие аккаунта в MAX и начать чат
