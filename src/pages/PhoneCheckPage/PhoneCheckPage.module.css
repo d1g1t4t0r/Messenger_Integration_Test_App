@@ -34,6 +34,7 @@
 	color: var(--color-text-secondary);
 	font-size: 14px;
 	line-height: 1.4;
+	cursor: default;
 }
 
 .logoutButton {
@@ -63,6 +64,7 @@
 	font-weight: 500;
 	line-height: 1.2;
 	text-align: center;
+	cursor: default;
 }
 
 .subtitle {
@@ -71,6 +73,7 @@
 	font-size: 15px;
 	line-height: 1.4;
 	text-align: center;
+	cursor: default;
 }
 
 .input {

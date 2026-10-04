@@ -1,68 +1,56 @@
 .page {
 	min-height: 100vh;
 	box-sizing: border-box;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	padding: 24px;
-
 	background: var(--color-background);
 }
 
 .card {
 	width: 100%;
 	max-width: 480px;
-
 	padding: 36px;
-
 	background: var(--color-background-card);
-
 	border: 1px solid var(--color-border-card);
 	border-radius: 16px;
 }
 
 .title {
 	margin: 0;
-
 	color: var(--color-text-primary);
-
 	font-size: 28px;
 	font-weight: 500;
 	line-height: 1.2;
-
+	cursor: default;
 	text-align: center;
 }
 
 .subtitle {
 	margin: 10px 0 32px;
-
 	color: var(--color-text-secondary);
-
 	font-size: 15px;
 	line-height: 1.4;
-
+	cursor: default;
 	text-align: center;
 }
 
 .fields {
 	display: flex;
 	flex-direction: column;
-
 	gap: 20px;
 }
 
 .field {
 	display: flex;
 	flex-direction: column;
-
 	gap: 8px;
 }
 
 .field span {
 	color: var(--color-text-primary);
-
+	cursor: default;
 	font-size: 14px;
 }
 
@@ -144,4 +132,5 @@
 .error {
 	margin-top: 28px;
 	color: var(--color-text-primary);
+	cursor: default;
 }

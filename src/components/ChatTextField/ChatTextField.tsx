@@ -53,7 +53,7 @@ export const ChatTextField = ({ onSend }: ChatTextFieldProps) => {
 	};
 
 	const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-		if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+		if (event.key === 'Enter' && !event.shiftKey) {
 			event.preventDefault();
 			handleSend();
 		}
