@@ -107,12 +107,17 @@
 		transform 0.1s ease;
 }
 
-.startButton:hover {
+.startButton:hover:not(:disabled) {
 	background: var(--color-button-hover);
 }
 
-.startButton:active {
+.startButton:active:not(:disabled) {
 	transform: scale(0.99);
+}
+
+.startButton:disabled {
+	opacity: 0.5;
+	cursor: default;
 }
 
 @media (max-width: 600px) {

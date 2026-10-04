@@ -43,18 +43,6 @@ export const StartPage = () => {
 			setIsChecking(false);
 		}
 	};
-	// const handleStart = () => {
-	// 	if (!idInstance || !apiTokenInstance) {
-	// 		return;
-	// 	}
-
-	// 	setConfig({
-	// 		idInstance,
-	// 		apiTokenInstance,
-	// 	});
-
-	// 	navigate(routeTarget.chat);
-	// };
 
 	return (
 		<main className={styles.page}>
